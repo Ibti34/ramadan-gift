@@ -242,42 +242,37 @@ opacity:1;
 
 
 /* name */
-
 .from{
-
 position:absolute;
-
-bottom:20px;
+bottom:40px;
 left:50%;
-
 transform:translateX(-50%);
-
-font-size:30px;
-
+color:#ffffff;
+font-size:28px;
+font-weight:bold;
 opacity:0;
-
-color:gold;
-
 transition:2s;
+z-index:10;
 
+/* beautiful glow */
+text-shadow:
+0 0 10px cyan,
+0 0 20px cyan,
+0 0 40px white;
 }
 
 .showfrom{
-
 opacity:1;
-
 }
+
 
 
 
 /* fireworks */
 
 canvas{
-
 position:absolute;
 top:0;
 left:0;
-
-z-index:5;
-
+z-index:1;
 }
