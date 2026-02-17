@@ -1,278 +1,202 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Reem+Kufi:wght@600&display=swap');
 
-margin:0;
-height:100vh;
-background:black;
-overflow:hidden;
-font-family:tahoma;
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-
-/* ⭐ stars */
-
-.star{
-
-position:absolute;
-
-width:2px;
-height:2px;
-
-background:white;
-
+body {
+    /* Fixed background to ensure stars are visible on top of it */
+    background: radial-gradient(circle at center, #111827 0%, #000000 100%);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Amiri', serif;
+    color: white;
+    position: relative;
 }
 
-
-/* 🌙 moon */
-
-.moon{
-
-position:absolute;
-top:50px;
-right:80px;
-
-width:100px;
-height:100px;
-
-background:#f5f3ce;
-
-border-radius:50%;
-
-box-shadow:0 0 40px white;
-
-z-index:1;
-
+/* --- ⭐ FIXED STARS --- */
+#stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Sits just above the background */
+    pointer-events: none;
 }
 
-.moon::after{
-
-content:"";
-
-position:absolute;
-
-left:30px;
-
-width:100px;
-height:100px;
-
-background:black;
-
-border-radius:50%;
-
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    /* This makes them glow */
+    box-shadow: 0 0 10px white, 0 0 5px white;
+    z-index: 1;
+    width: 2px;
+    height: 2px;
 }
 
-
-/* 🎁 gift */
-
-.gift{
-
-position:absolute;
-
-top:50%;
-left:50%;
-
-transform:translate(-50%,-50%);
-
-width:200px;
-height:220px;
-
-cursor:pointer;
-
-z-index:10;
-
+/* --- 🌙 FIXED MOON --- */
+.moon {
+    position: absolute;
+    top: 40px;
+    left: 40px; /* Moved to left to ensure visibility */
+    width: 80px;
+    height: 80px;
+    background: transparent;
+    border-radius: 50%;
+    /* Created a bright golden crescent */
+    box-shadow: -15px 15px 0 0 #fde047;
+    filter: drop-shadow(0 0 20px rgba(253, 224, 71, 0.6));
+    z-index: 2;
+    animation: floatMoon 6s ease-in-out infinite;
 }
 
-
-
-/* box */
-
-.box{
-
-position:absolute;
-
-bottom:0;
-left:10px;
-
-width:180px;
-height:160px;
-
-background:#5fa8d3;
-
-border-radius:15px;
-
+@keyframes floatMoon {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(-5deg); }
 }
 
-
-
-/* ribbon */
-
-.box::before{
-
-content:"";
-
-position:absolute;
-
-left:70px;
-
-width:40px;
-height:100%;
-
-background:#1c4c75;
-
+/* --- 🎁 3D GIFT BOX --- */
+.gift {
+    position: relative;
+    width: 130px;
+    height: 110px;
+    cursor: pointer;
+    z-index: 15;
+    margin-top: 50px;
+    perspective: 1000px;
+    animation: floatGift 3s ease-in-out infinite;
 }
 
-
-
-/* lid */
-
-.lid{
-
-position:absolute;
-
-top:0;
-left:0;
-
-width:200px;
-height:60px;
-
-background:#6bb6e6;
-
-border-radius:15px;
-
-transition:1s;
-
+@keyframes floatGift {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
 
-.lid span{
-
-position:absolute;
-
-top:20px;
-
-width:100%;
-height:20px;
-
-background:#1c4c75;
-
+.box {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #be123c 0%, #4c0519 100%);
+    border-radius: 8px;
+    position: relative;
+    box-shadow: inset -5px -5px 15px rgba(0,0,0,0.5), 0 20px 50px rgba(0,0,0,0.8);
 }
 
-
-
-/* bow */
-
-.bow{
-
-position:absolute;
-
-top:-40px;
-left:50%;
-
-transform:translateX(-50%);
-
-display:flex;
-
+.box::after, .lid::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 100%;
+    background: linear-gradient(to right, #b45309, #fbbf24, #b45309);
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
 }
 
-.loop{
-
-width:60px;
-height:40px;
-
-border:10px solid #1c4c75;
-
-border-radius:50%;
-
+.lid {
+    position: absolute;
+    top: -15px;
+    left: -5%;
+    width: 110%;
+    height: 25px;
+    background: #e11d48;
+    border-radius: 4px;
+    z-index: 20;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    transition: all 0.8s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 
-.loop:last-child{
-
-margin-left:-20px;
-
+.bow {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    z-index: 21;
 }
 
-
-
-/* open */
-
-.open .lid{
-
-transform:translateY(-250px) rotate(20deg);
-
+.loop {
+    width: 45px;
+    height: 35px;
+    background: radial-gradient(circle at center, #fbbf24 0%, #b45309 100%);
+    border-radius: 50% 50% 10% 50%;
+    position: absolute;
+    box-shadow: 2px 5px 12px rgba(0,0,0,0.4);
 }
 
-.open .box{
+.loop:nth-child(1) { left: 5px; transform: rotate(20deg); }
+.loop:nth-child(2) { right: 5px; transform: rotate(-20deg) scaleX(-1); }
 
-transform:scale(0);
-
-transition:1s;
-
+/* --- ✉️ SHIMMERING TEXT --- */
+.msg, .from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(40px) scale(0.9);
+    transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-align: center;
+    z-index: 10;
 }
 
-
-
-/* message */
-
-.msg{
-
-position:absolute;
-
-top:40%;
-left:50%;
-
-transform:translateX(-50%);
-
-font-size:60px;
-
-color:white;
-
-opacity:0;
-
-transition:1s;
-
-z-index:20;
-
+.msg.show, .from.showfrom {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
 }
 
-.show{
-
-opacity:1;
-
+.ramadan-title {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 4.5rem;
+    background: linear-gradient(90deg, #d97706, #fef3c7, #d97706, #fef3c7, #d97706);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: goldShimmer 5s linear infinite;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
 }
 
-
-
-/* name */
-.from{
-position:absolute;
-bottom:40px;
-left:50%;
-transform:translateX(-50%);
-color:#ffffff;
-font-size:28px;
-font-weight:bold;
-opacity:0;
-transition:2s;
-z-index:10;
-
-/* beautiful glow */
-text-shadow:
-0 0 10px cyan,
-0 0 20px cyan,
-0 0 40px white;
+@keyframes goldShimmer {
+    to { background-position: 200% center; }
 }
 
-.showfrom{
-opacity:1;
+.ramadan-sub {
+    font-size: 1.6rem;
+    color: #cbd5e1;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
+.from {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    color: #fbbf24;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+}
 
+/* --- 🎇 FIREWORKS --- */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 5;
+}
 
-
-/* fireworks */
-
-canvas{
-position:absolute;
-top:0;
-left:0;
-z-index:1;
+/* State when opened */
+.gift.open .lid {
+    transform: translateY(-200px) rotateX(60deg) rotate(20deg);
+    opacity: 0;
+}
+.gift.open {
+    animation: none;
+    transform: scale(0.7) translateY(100px);
+    opacity: 0.3;
+    filter: blur(2px);
+    pointer-events: none;
 }

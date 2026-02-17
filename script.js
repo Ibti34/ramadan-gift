@@ -1,6 +1,12 @@
 
-
 /* ⭐ stars */
+
+let starsContainer=document.createElement("div")
+
+starsContainer.id="stars"
+
+document.body.appendChild(starsContainer)
+
 
 for(let i=0;i<200;i++){
 
@@ -11,7 +17,7 @@ s.className="star"
 s.style.top=Math.random()*100+"%"
 s.style.left=Math.random()*100+"%"
 
-document.body.appendChild(s)
+starsContainer.appendChild(s)
 
 }
 
@@ -26,6 +32,7 @@ let ctx=canvas.getContext("2d")
 canvas.width=innerWidth
 canvas.height=innerHeight
 
+
 let particles=[]
 
 
@@ -39,7 +46,6 @@ x:innerWidth/2,
 y:innerHeight/2,
 
 vx:(Math.random()-.5)*10,
-
 vy:(Math.random()-.5)*10,
 
 a:1
@@ -49,6 +55,7 @@ a:1
 }
 
 }
+
 
 
 function draw(){
